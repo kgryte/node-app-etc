@@ -32,7 +32,7 @@ The `function` accepts the following `options`:
 *	__defaultsFile__: basename of a file within the application configuration directory which contains *default* application settings. Default: `defaults`.
 *	__user__: user configuration directory. The default value is determined according to the host OS.
 *	__userFile__: basename of a file within the user configuration directory which contains *user* application settings. The default value is the application [name](https://github.com/kgryte/resolve-app-pkginfo).
-*	__env__: application runtime environment. The default is `dev`.
+*	__env__: application runtime environment. Default: `dev`.
 *	__envFile__: basename of a file within the application configuration directory which maps environment variables to application settings. Default: `env`.
 *	__order__: defines the configuration hierarchy. Default: `['defaults','user','app','env']`.
 
@@ -43,7 +43,7 @@ __Note__: if a file extension is omitted when specifying file basenames, this mo
 
 ##### Configuration Directory
 
-By default, the application configuration directory is a directory named `etc` located in the application's [root](https://github.com/kgryte/resolve-app-root) directory. This directory may contain default configuration settings, mappings between environment variables and configuration settings, various application specific configuration files tailored for different runtime environments, and more. To specify a different directory, set the `etc` option:
+By default, the application configuration directory is a directory named `etc` located in the application's [root](https://github.com/kgryte/resolve-app-root) directory. This directory may contain default configuration settings, mappings between environment variables and configuration settings, various application-specific configuration files tailored for different runtime environments, and more. To specify a different directory, set the `etc` option:
 
 ``` javascript
 var config = etc({
@@ -54,7 +54,7 @@ var config = etc({
 
 ##### Default Configuration
 
-A __defaults__ file should contain default application configuration settings; e.g., if applicable, a default log level, port, etc. By default, this module looks for a `defaults` file. To specify a different basename, set the `defaultsFile` option:
+A __defaults__ file should contain default application configuration settings; e.g., if applicable, a default log level, port, etc. By default, this module looks for a file with the basename `defaults`. To specify a different basename, set the `defaultsFile` option:
 
 ``` javascript
 var config = etc({
@@ -65,7 +65,7 @@ var config = etc({
 
 ##### User Configuration
 
-The __user__ directory option specifies the location of a directory containing [user-specific](http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html) configuration files. The default of this directory is typically OS specific. To specify a directory, set the `user` option:
+The __user__ directory option specifies the location of a directory containing [user-specific](http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html) configuration files. The location of this directory is typically OS specific. To specify a directory, set the `user` option:
 
 ``` javascript
 var config = etc({
@@ -84,7 +84,7 @@ var config = etc({
 
 ##### Runtime Configuration
 
-Often different runtime environments require different application configurations. For example, in development, the application may connect to local resources; whereas, in production, the application may connect to various remote endpoints. To handle the different runtimes, applications will utilize environment specific configuration files; e.g., `production.json`, `development.json`, `test.json`, `local.json`, etc. This module sets the default runtime environment to `dev` and looks for a corresponding configuration file of the same name in the application configuration directory. To override this option, either set the `NODE_ENV` [environment variable](https://en.wikipedia.org/wiki/Environment_variable) or set the `env` option:
+Often different runtime environments require different application configurations. For example, in `development`, the application may connect to local resources; whereas, in `production`, the application may connect to various remote endpoints. To handle the different runtimes, applications will utilize environment specific configuration files; e.g., `production.json`, `development.json`, `test.json`, `local.json`, etc. This module sets the default runtime environment to `dev` and looks for a corresponding configuration file of the same name in the application configuration directory. To override this option, either set the `NODE_ENV` [environment variable](https://en.wikipedia.org/wiki/Environment_variable) or set the `env` option:
 
 ``` javascript
 var config = etc({
@@ -92,7 +92,7 @@ var config = etc({
 });
 ```
 
-Runtime environments frequently use [environment variables](https://en.wikipedia.org/wiki/Environment_variable) for configuration (e.g., [containers](https://docs.docker.com/reference/run/#env-environment-variables)). To map environment variables to configuration settings, this module searches the application configuration directory for a file which maps each [environment variable](https://en.wikipedia.org/wiki/Environment_variable) to a particular setting. By default, this module looks for a file having the basename `env`. To specify a different basename, set the `envFile` option:
+Runtime environments (e.g., [containers](https://docs.docker.com/reference/run/#env-environment-variables)) frequently use [environment variables](https://en.wikipedia.org/wiki/Environment_variable) for configuration. To map [environment variables](https://en.wikipedia.org/wiki/Environment_variable) to configuration settings, this module searches the application configuration directory for a file which maps each [environment variable](https://en.wikipedia.org/wiki/Environment_variable) to a particular setting. By default, this module looks for a file having the basename `env`. To specify a different basename, set the `envFile` option:
 
 ``` javascript
 var config = etc({
@@ -100,7 +100,7 @@ var config = etc({
 });
 ```
 
-The file contents should include each relevant [environment variable](https://en.wikipedia.org/wiki/Environment_variable) and a corresponding setting. For example, a JSON mapping file:
+The file contents should include each relevant [environment variable](https://en.wikipedia.org/wiki/Environment_variable) and a corresponding setting. Nested configuration settings __must__ be `.` separated. For example, a JSON mapping file:
 
 ``` javascript
 {
@@ -129,19 +129,17 @@ SSL_KEY = "server.key"
 SSL_CERT = "server.cert"
 ```
 
-__Note__: nested configuration settings should be `.` separated.
-
 
 
 
 ##### Configuration Hierarchy
 
-Configuration sources are many; e.g., user-specific, application-specific, environment variables, and more. The following sources are supported:
+Configuration sources are many; e.g., user-specific, application-specific, [environment variables](https://en.wikipedia.org/wiki/Environment_variable), and more. The following sources are supported:
 
 *	__defaults__: default application settings
 *	__user__: user-specific settings
 *	__app__ : application-specific settings
-*	__env__: environment variable runtime settings
+*	__env__: [environment variable](https://en.wikipedia.org/wiki/Environment_variable) runtime settings
 
 The `order` option exists to impose a configuration hierarchy. By default, the hierarchy is
 
