@@ -2,7 +2,8 @@ TODO
 ====
 
 1. bump app-etc-load and app-etc-config deps
-2. 
+	-	for `config`, see (4) below.
+2. finish implementation/tests for `user`
 3. os specific config dirs
 	-	make sep module
 4. ability to specify a schema????
@@ -14,4 +15,6 @@ TODO
 	- 	naive validation would require copying the entire config, validating everything, and then only reassigning the underlying store if valid
 		-	this is a relatively expensive operation
 		-	would be better if could just validate what changed
+	-	how about just a method which the user can choose to use to validate at any point? e.g., `etc.validate( config )`?
+		-	might be better to hang the method off `config`
 5. 
