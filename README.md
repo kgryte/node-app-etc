@@ -29,9 +29,9 @@ var config = etc();
 The `function` accepts the following `options`:
 
 *	__etc__: application configuration directory. Default: `./etc`.
-*	__defaultsFile__: basename of a file within the application configuration directory which contains __default__ application settings. Default: `defaults`.
+*	__defaultsFile__: basename of a file within the application configuration directory which contains *default* application settings. Default: `defaults`.
 *	__user__: user configuration directory. The default value is determined according to the host OS.
-*	__userFile__: basename of a file within the user configuration directory which contains __user__ application settings. The default value is the application [name](https://github.com/kgryte/resolve-app-pkginfo).
+*	__userFile__: basename of a file within the user configuration directory which contains *user* application settings. The default value is the application [name](https://github.com/kgryte/resolve-app-pkginfo).
 *	__env__: application runtime environment. The default is `dev`.
 *	__envFile__: basename of a file within the application configuration directory which maps environment variables to application settings. Default: `env`.
 *	__order__: defines the configuration hierarchy. Default: `['defaults','user','app','env']`.
