@@ -1,0 +1,13 @@
+# Configuration file specifying default settings...
+
+# Server config:
+[server]
+port = 7331
+address = "127.0.0.1"
+ssl = true
+key = ""
+cert = ""
+
+# Logger config:
+[logger]
+level = "info"

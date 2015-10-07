@@ -2,7 +2,7 @@ TODO
 ====
 
 1. bump app-etc-load and app-etc-config deps
-2. 
+2. example mini app
 3. os specific config dirs
 	-	make sep module
 4. ability to specify a schema????

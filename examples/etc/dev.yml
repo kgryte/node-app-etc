@@ -1,0 +1,11 @@
+# Development configuration file...
+env: "dev"
+
+# Server config:
+server:
+  port: 1337
+  ssl: false
+
+# Logger config:
+logger:
+  level: "debug"
