@@ -84,7 +84,7 @@ var config = etc({
 
 ##### Runtime Configuration
 
-Often different runtime environments require different application configurations. For example, in development, the application may connect to local resources; whereas, in production, the application may connect to various remote endpoints. To handle the different runtimes, applications will utilize environment specific configuration files; e.g., `production.json`, `development.json`, `test.json`, `local.json`, etc. This module sets the default runtime environment to `dev` and looks for a corresponding configuration file of the same name in the application configuration directory. To override this option, either set the `NODE_ENV` environment variable or set the `env` option:
+Often different runtime environments require different application configurations. For example, in development, the application may connect to local resources; whereas, in production, the application may connect to various remote endpoints. To handle the different runtimes, applications will utilize environment specific configuration files; e.g., `production.json`, `development.json`, `test.json`, `local.json`, etc. This module sets the default runtime environment to `dev` and looks for a corresponding configuration file of the same name in the application configuration directory. To override this option, either set the `NODE_ENV` [environment variable](https://en.wikipedia.org/wiki/Environment_variable) or set the `env` option:
 
 ``` javascript
 var config = etc({
@@ -92,13 +92,45 @@ var config = etc({
 });
 ```
 
-Runtime environments frequently use [environment variables](https://en.wikipedia.org/wiki/Environment_variable) for configuration (e.g., [containers](https://docs.docker.com/reference/run/#env-environment-variables)). To map environment variables to configuration settings, this module searches the application configuration directory for a file which maps each environment variable to a particular setting. By default, this module looks for a file having the basename `env`. To specify a different basename, set the `envFile` option:
+Runtime environments frequently use [environment variables](https://en.wikipedia.org/wiki/Environment_variable) for configuration (e.g., [containers](https://docs.docker.com/reference/run/#env-environment-variables)). To map environment variables to configuration settings, this module searches the application configuration directory for a file which maps each [environment variable](https://en.wikipedia.org/wiki/Environment_variable) to a particular setting. By default, this module looks for a file having the basename `env`. To specify a different basename, set the `envFile` option:
 
 ``` javascript
 var config = etc({
 	'envFile': 'env_mapping'
 });
 ```
+
+The file contents should include each relevant [environment variable](https://en.wikipedia.org/wiki/Environment_variable) and a corresponding setting. For example, a JSON mapping file:
+
+``` javascript
+{
+	"DEBUG_LEVEL": "logger.level",
+	"PORT": "server.port",
+	"SSL_KEY": "server.key",
+	"SSL_CERT": "server.cert",
+	"GITHUB_API_KEY": "gKey"
+}
+```
+
+A TOML mapping file:
+
+``` toml
+# A TOML file which maps environment variables to configuration settings...
+
+# Github API key:
+GITHUB_API_KEY = "gKey"
+
+# Logger environment variables:
+DEBUG_LEVEL = "logger.level"
+
+# Server environment variables:
+PORT = "server.port"
+SSL_KEY = "server.key"
+SSL_CERT = "server.cert"
+```
+
+__Note__: nested configuration settings should be `.` separated.
+
 
 
 
