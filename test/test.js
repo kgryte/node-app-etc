@@ -9,8 +9,7 @@ var chai = require( 'chai' ),
 
 // VARIABLES //
 
-var expect = chai.expect,
-	assert = chai.assert;
+var expect = chai.expect;
 
 
 // TESTS //
@@ -19,6 +18,10 @@ describe( 'app-etc', function tests() {
 
 	it( 'should export a function', function test() {
 		expect( etc ).to.be.a( 'function' );
+	});
+
+	it( 'should export a function to get/set a parser', function test() {
+		expect( etc.parser ).to.be.a( 'function' );
 	});
 
 });
