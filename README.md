@@ -43,7 +43,7 @@ __Note__: if a file extension is omitted when specifying file basenames, this mo
 
 ##### Configuration Directory
 
-By default, the application configuration directory is a directory named `etc` located in the application's [root](https://github.com/kgryte/resolve-app-root) directory. This directory may contain default configuration settings, mappings between environment variables and configuration settings, various application-specific configuration files tailored for different runtime environments, and more. To specify a different directory, set the `etc` option:
+By default, the application configuration directory is a directory named `etc` located in the application's [root](https://github.com/kgryte/resolve-app-path) directory. This directory may contain default configuration settings, mappings between environment variables and configuration settings, various application-specific configuration files tailored for different runtime environments, and more. To specify a different directory, set the `etc` option:
 
 ``` javascript
 var config = etc({
