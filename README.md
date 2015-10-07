@@ -100,15 +100,27 @@ var config = etc({
 });
 ```
 
-The file contents should include each relevant [environment variable](https://en.wikipedia.org/wiki/Environment_variable) and a corresponding setting. Nested configuration settings __must__ be `.` separated. For example, a JSON mapping file:
+The file contents should include each relevant [environment variable](https://en.wikipedia.org/wiki/Environment_variable) and a corresponding setting. For example, a JSON mapping file:
 
 ``` javascript
 {
-	"DEBUG_LEVEL": "logger.level",
-	"PORT": "server.port",
-	"SSL_KEY": "server.key",
-	"SSL_CERT": "server.cert",
-	"GITHUB_API_KEY": "gKey"
+	"GITHUB_API_KEY": {
+		"keypath": "gKey"
+	},
+	"DEBUG_LEVEL": {
+		"keypath": "logger.level"
+	},
+	"PORT": {
+		"keypath": "server.port",
+		"type": "number"
+	},
+	"SSL_KEY": {
+		"keypath": "server.key",
+		"type": "string"
+	},
+	"SSL_CERT": {
+		"keypath": "server.cert",
+		"type": "string"
 }
 ```
 
@@ -117,18 +129,38 @@ A TOML mapping file:
 ``` toml
 # A TOML file which maps environment variables to configuration settings...
 
-# Github API key:
-GITHUB_API_KEY = "gKey"
+[GITHUB_API_KEY]
+keypath = "gKey"
 
 # Logger environment variables:
-DEBUG_LEVEL = "logger.level"
+[DEBUG_LEVEL]
+keypath = "logger.level"
 
 # Server environment variables:
-PORT = "server.port"
-SSL_KEY = "server.key"
-SSL_CERT = "server.cert"
+[PORT]
+keypath = "server.port"
+type = "number"
+
+[SSL_KEY]
+keypath = "server.key"
+type = "string"
+
+[SSL_CERT]
+keypath = "server.cert"
+type = "string"
 ```
 
+__Notes__:
+
+*	A configuration setting is specified by a `keypath`.
+* 	Nested configuration setting `keypaths` __must__ be `.` separated.
+*	A configuration setting type may be specified by providing a `type`. Possible `types `include:
+	-	`string` (default)
+	-	`number`
+	-	`boolean`
+	-	`object`
+*	If an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) cannot be cast as a specified type, the module __will_ throw an `error`.
+*	If an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) does __not__ exist, the module __skips__ that variable.
 
 
 
@@ -211,7 +243,7 @@ console.dir( config.get() );
 /*
 	{
 		'server': {
-			'port': '8080',
+			'port': 8080,
 			'address': '127.0.0.1',
 			'ssl': false,
 			'key': '',
