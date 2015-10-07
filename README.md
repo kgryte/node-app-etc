@@ -159,7 +159,7 @@ __Notes__:
 	-	`number`
 	-	`boolean`
 	-	`object`
-*	If an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) cannot be cast as a specified type, the module __will_ throw an `error`.
+*	If an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) cannot be cast as a specified type, the module __will__ throw an `error`.
 *	If an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) does __not__ exist, the module __skips__ that variable.
 
 
