@@ -1,0 +1,5 @@
+server:
+  port: 7331
+
+logger:
+  level: "info"
