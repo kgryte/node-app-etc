@@ -1,9 +1,8 @@
 TODO
 ====
 
-1. factory method for creating new `Config` instances
-2. move app-name to sep module
-	-	make sync and async versions
+1. bump app-etc-load and app-etc-config deps
+2. 
 3. os specific config dirs
 	-	make sep module
 4. ability to specify a schema????
@@ -16,27 +15,4 @@ TODO
 		-	this is a relatively expensive operation
 		-	would be better if could just validate what changed
 5. 
-
-
-#### config
-
-1. move `config` to separate module `app-etc-config`
-2. 
-
-
-#### loader
-
-1. default.json should probably go away, as it is highly application specific
-	-	but can look for a `defaults` file
-2. ability to specify the default environment at initialization; e.g., `dev` or `develop`, etc.
-3. separate module `app-etc-load`
-4. 
-
-
-#### parsers
-
-1. sep module `app-etc-parsers`
-2. wrap `toml` similar to `utils-json-parse`
-3. ditto for `yaml`
-4. ditto for `ini`
-5. 
+6. 

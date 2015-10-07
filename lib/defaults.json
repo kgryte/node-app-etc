@@ -1,14 +1,14 @@
 {
-	"configDir": "./etc",
-	"userDir": "",
+	"etc": "./etc",
 	"defaultsFile": "defaults",
-	"envVarsFile": "env",
+	"user": "",
 	"userFile": "",
 	"env": "dev",
+	"envFile": "env",
 	"order": [
 		"defaults",
 		"user",
-		"env",
-		"envvars"
+		"app",
+		"env"
 	]
 }
