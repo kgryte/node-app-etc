@@ -1,4 +1,4 @@
-/* global require, describe, it, beforeEach */
+/* global require, describe, it, beforeEach, after */
 'use strict';
 
 // MODULES //
@@ -23,6 +23,16 @@ describe( 'env', function tests() {
 	fixtures = path.join( __dirname, 'fixtures' );
 
 	beforeEach( function before() {
+		delete process.env[ 'API_KEY' ];
+		delete process.env[ 'PORT' ];
+		delete process.env[ 'LOG_LEVEL' ];
+		delete process.env[ 'STR' ];
+		delete process.env[ 'NUM' ];
+		delete process.env[ 'BOOL' ];
+		delete process.env[ 'OBJ' ];
+	});
+
+	after( function foo() {
 		delete process.env[ 'API_KEY' ];
 		delete process.env[ 'PORT' ];
 		delete process.env[ 'LOG_LEVEL' ];
