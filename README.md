@@ -32,7 +32,7 @@ The `function` accepts the following `options`:
 *	__defaultsFile__: basename of a file within the application configuration directory which contains *default* application settings. Default: `defaults`.
 *	__etc__: application configuration directory. Default: [`/etc`](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard).
 *	__etcFile__: basename of a file within an application configuration directory which contains application settings. The default value is the application [name](https://github.com/kgryte/resolve-app-pkginfo).
-*	__user__: user configuration directory. The default value is determined according to the host OS.
+*	__user__: user configuration directory. The [default value](https://github.com/kgryte/utils-configdir) is determined according to the host OS.
 *	__userFile__: basename of a file within the user configuration directory which contains *user* application settings. The default value is the application [name](https://github.com/kgryte/resolve-app-pkginfo).
 *	__env__: application runtime environment. Default: `dev`.
 *	__envFile__: basename of a file within the application configuration directory which maps environment variables to application settings. Default: `env`.
@@ -45,7 +45,7 @@ __Note__: if a file extension is omitted when specifying file basenames, this mo
 
 ##### Local Configuration Directory
 
-By default, the local application configuration directory is a directory named [`etc`](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard) located in the application's [root](https://github.com/kgryte/resolve-app-path) directory. This directory may contain default configuration settings, mappings between environment variables and configuration settings, various application-specific configuration files tailored for different runtime environments, and more. To specify a different directory, set the `etc` option:
+By default, the local application configuration directory is a directory named [`etc`](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard) located in the application's [root](https://github.com/kgryte/resolve-app-path) directory. This directory may contain default configuration settings, mappings between environment variables and configuration settings, various application-specific configuration files tailored for different runtime environments, and more. To specify a different directory, set the `local` option:
 
 ``` javascript
 var config = etc({
@@ -105,7 +105,7 @@ var config = etc({
 
 ##### Runtime Configuration
 
-Often different runtime environments require different application configurations. For example, in `development`, the application may connect to local resources; whereas, in `production`, the application may connect to various remote endpoints. To handle the different runtimes, applications will utilize environment specific configuration files; e.g., `production.json`, `development.json`, `test.json`, `local.json`, etc. This module sets the default runtime environment to `dev` and looks for a corresponding configuration file of the same name in the application configuration directory. To override this option, either set the `NODE_ENV` [environment variable](https://en.wikipedia.org/wiki/Environment_variable) or set the `env` option:
+Often different runtime environments require different application configurations. For example, in `development`, the application may connect to local resources; whereas, in `production`, the application may connect to various remote endpoints. To handle the different runtimes, applications will utilize environment specific configuration files; e.g., `production.json`, `development.json`, `test.json`, `local.json`, etc. This module sets the default runtime environment to `dev` and looks for a corresponding configuration file of the same name in the __local__ application configuration directory. To override this option, either set the `NODE_ENV` [environment variable](https://en.wikipedia.org/wiki/Environment_variable) or set the `env` option:
 
 ``` javascript
 var config = etc({
@@ -113,7 +113,7 @@ var config = etc({
 });
 ```
 
-Runtime environments (e.g., [containers](https://docs.docker.com/reference/run/#env-environment-variables)) frequently use [environment variables](https://en.wikipedia.org/wiki/Environment_variable) for configuration. To map [environment variables](https://en.wikipedia.org/wiki/Environment_variable) to configuration settings, this module searches the application configuration directory for a file which maps each [environment variable](https://en.wikipedia.org/wiki/Environment_variable) to a particular setting. By default, this module looks for a file having the basename `env`. To specify a different basename, set the `envFile` option:
+Runtime environments (e.g., [containers](https://docs.docker.com/reference/run/#env-environment-variables)) frequently use [environment variables](https://en.wikipedia.org/wiki/Environment_variable) for configuration. To map [environment variables](https://en.wikipedia.org/wiki/Environment_variable) to configuration settings, this module searches the __local__ application configuration directory for a file which maps each [environment variable](https://en.wikipedia.org/wiki/Environment_variable) to a particular setting. By default, this module looks for a file having the basename `env`. To specify a different basename, set the `envFile` option:
 
 ``` javascript
 var config = etc({
