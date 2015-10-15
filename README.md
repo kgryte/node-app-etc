@@ -79,7 +79,7 @@ An __etc__ file should contain application-specific configuration settings. By d
 
 ``` javascript
 var config = etc({
-	'etcFile': 'config/.dev.alce' 
+	'etcFile': 'config/app.alce' 
 });
 ```
 
@@ -90,7 +90,7 @@ The __user__ directory option specifies the location of a directory containing [
 
 ``` javascript
 var config = etc({
-	'user': '/Users/<name>/Library/Preferences'
+	'user': '~/'
 });
 ```
 
@@ -98,7 +98,7 @@ A __user__ file should contain user-specific configuration settings. By default,
 
 ``` javascript
 var config = etc({
-	'userFile': 'configgie.json' 
+	'userFile': '.app.json' 
 });
 ```
 
