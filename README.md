@@ -79,7 +79,7 @@ An __etc__ file should contain application-specific configuration settings. By d
 
 ``` javascript
 var config = etc({
-	'etcFile': 'config/app.alce' 
+	'etcFile': 'appname/config.alce' 
 });
 ```
 
@@ -98,7 +98,7 @@ A __user__ file should contain user-specific configuration settings. By default,
 
 ``` javascript
 var config = etc({
-	'userFile': '.app.json' 
+	'userFile': '.appname.json' 
 });
 ```
 
