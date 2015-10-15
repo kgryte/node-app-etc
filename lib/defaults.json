@@ -1,14 +1,17 @@
 {
-	"etc": "./etc",
+	"local": "./etc",
 	"defaultsFile": "defaults",
-	"user": "",
-	"userFile": "",
+	"etc": "/etc",
+	"etcFile": "",
 	"env": "dev",
 	"envFile": "env",
+	"user": "",
+	"userFile": "",
 	"order": [
 		"defaults",
-		"user",
 		"app",
+		"local",
+		"user",
 		"env"
 	]
 }

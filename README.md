@@ -28,26 +28,28 @@ var config = etc();
 
 The `function` accepts the following `options`:
 
-*	__etc__: application configuration directory. Default: `./etc`.
+*	__local__: local application configuration directory. Default: [`./etc`](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard).
 *	__defaultsFile__: basename of a file within the application configuration directory which contains *default* application settings. Default: `defaults`.
+*	__etc__: application configuration directory. Default: [`/etc`](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard).
+*	__etcFile__: basename of a file within an application configuration directory which contains application settings. The default value is the application [name](https://github.com/kgryte/resolve-app-pkginfo).
 *	__user__: user configuration directory. The default value is determined according to the host OS.
 *	__userFile__: basename of a file within the user configuration directory which contains *user* application settings. The default value is the application [name](https://github.com/kgryte/resolve-app-pkginfo).
 *	__env__: application runtime environment. Default: `dev`.
 *	__envFile__: basename of a file within the application configuration directory which maps environment variables to application settings. Default: `env`.
-*	__order__: defines the configuration hierarchy. Default: `['defaults','user','app','env']`.
+*	__order__: defines the configuration hierarchy. Default: `['defaults','app','local','user','env']`.
 
 
 __Note__: if a file extension is omitted when specifying file basenames, this module will search for the first file having the basename and a supported extension. For supported extensions, see [app-etc-load](https://github.com/kgryte/node-app-etc-load).
 
 
 
-##### Configuration Directory
+##### Local Configuration Directory
 
-By default, the application configuration directory is a directory named `etc` located in the application's [root](https://github.com/kgryte/resolve-app-path) directory. This directory may contain default configuration settings, mappings between environment variables and configuration settings, various application-specific configuration files tailored for different runtime environments, and more. To specify a different directory, set the `etc` option:
+By default, the local application configuration directory is a directory named [`etc`](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard) located in the application's [root](https://github.com/kgryte/resolve-app-path) directory. This directory may contain default configuration settings, mappings between environment variables and configuration settings, various application-specific configuration files tailored for different runtime environments, and more. To specify a different directory, set the `etc` option:
 
 ``` javascript
 var config = etc({
-	'etc': './config'
+	'local': './config'
 });
 ```
 
@@ -63,9 +65,28 @@ var config = etc({
 ```
 
 
+##### Application Configuration
+
+The __etc__ directory option specifies the location of a directory containing application-specific configuration files. The default value is [`/etc`](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard), but this may not apply for all operating systems (e.g., Windows). To specify a different directory, set the `etc` option:
+
+``` javascript
+var config = etc({
+	'etc': '/config'
+});
+```
+
+An __etc__ file should contain application-specific configuration settings. By default, this module searches for a file having a basename equal to the application name. To specify a different basename, set the `etcFile` option:
+
+``` javascript
+var config = etc({
+	'etcFile': 'config/.dev.alce' 
+});
+```
+
+
 ##### User Configuration
 
-The __user__ directory option specifies the location of a directory containing [user-specific](http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html) configuration files. The location of this directory is typically OS specific. To specify a directory, set the `user` option:
+The __user__ directory option specifies the location of a directory containing [user-specific](https://github.com/kgryte/utils-configdir) configuration files. The location of this directory is typically OS specific. To specify a directory, set the `user` option:
 
 ``` javascript
 var config = etc({
@@ -169,8 +190,9 @@ __Notes__:
 Configuration sources are many; e.g., user-specific, application-specific, [environment variables](https://en.wikipedia.org/wiki/Environment_variable), and more. The following sources are supported:
 
 *	__defaults__: default application settings
-*	__user__: user-specific settings
 *	__app__ : application-specific settings
+*	__local__: local application-specific settings
+*	__user__: user-specific settings
 *	__env__: [environment variable](https://en.wikipedia.org/wiki/Environment_variable) runtime settings
 
 The `order` option exists to impose a configuration hierarchy. By default, the hierarchy is
@@ -178,8 +200,9 @@ The `order` option exists to impose a configuration hierarchy. By default, the h
 ``` javascript
 [
 	'defaults', // read first
-	'user',
 	'app',
+	'local',
+	'user',
 	'env'       // read last
 ]
 ```
@@ -187,10 +210,10 @@ The `order` option exists to impose a configuration hierarchy. By default, the h
 To specify a different order, set the `order` option:
 
 ``` javascript
-// Only use application and environment variables as configuration sources...
+// Only use local application configuration and environment variables as configuration sources...
 var config = etc({
 	'order': [
-		'app',
+		'local',
 		'env'
 	]
 });
@@ -237,7 +260,7 @@ var path = require( 'path' ),
 	etc = require( 'app-etc' );
 
 var config = etc({
-	'etc': path.join( __dirname, 'etc' )
+	'local': path.join( __dirname, 'etc' )
 });
 console.dir( config.get() );
 /*

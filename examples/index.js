@@ -4,7 +4,7 @@ var path = require( 'path' ),
 	etc = require( './../lib' );
 
 var config = etc({
-	'etc': path.join( __dirname, 'etc' )
+	'local': path.join( __dirname, 'etc' )
 });
 console.dir( config.get() );
 /*

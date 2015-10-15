@@ -38,7 +38,7 @@ describe( 'etc', function tests() {
 		expect( badValue ).to.throw( Error );
 		function badValue() {
 			etc({
-				'etc': 1234
+				'local': 1234
 			});
 		}
 	});
@@ -49,7 +49,7 @@ describe( 'etc', function tests() {
 
 		// Search for a `defaults` file:
 		config = etc({
-			'etc': fixtures,
+			'local': fixtures,
 			'order': [
 				'defaults'
 			]
@@ -61,7 +61,7 @@ describe( 'etc', function tests() {
 
 		// Explicitly state the `defaults` file:
 		config = etc({
-			'etc': fixtures,
+			'local': fixtures,
 			'defaultsFile': 'defaults2.alce',
 			'order': [
 				'defaults'
@@ -73,8 +73,6 @@ describe( 'etc', function tests() {
 		assert.deepEqual( config.get(), expected );
 	});
 
-	it( 'should load a user-specific configuration file' );
-
 	it( 'should load an application-specific configuration file', function test() {
 		var expected,
 			config,
@@ -85,9 +83,32 @@ describe( 'etc', function tests() {
 
 		config = etc({
 			'etc': fixtures,
-			'env': 'local',
+			'etcFile': 'app',
 			'order': [
 				'app'
+			]
+		});
+		expected = {
+			'beep': 'bebopboop'
+		};
+		assert.deepEqual( config.get(), expected );
+
+		process.env[ 'NODE_ENV' ] = env;
+	});
+
+	it( 'should load a local application-specific configuration file', function test() {
+		var expected,
+			config,
+			env;
+
+		env = process.env[ 'NODE_ENV' ];
+		delete process.env[ 'NODE_ENV' ];
+
+		config = etc({
+			'local': fixtures,
+			'env': 'local',
+			'order': [
+				'local'
 			]
 		});
 		expected = {
@@ -98,6 +119,9 @@ describe( 'etc', function tests() {
 		process.env[ 'NODE_ENV' ] = env;
 	});
 
+	// TODO:
+	it( 'should load a user-specific configuration file' );
+
 	it( 'should load environment variables', function test() {
 		var expected,
 			config;
@@ -105,7 +129,7 @@ describe( 'etc', function tests() {
 		process.env[ 'BEEP' ] = 'yoyo';
 
 		config = etc({
-			'etc': fixtures,
+			'local': fixtures,
 			'envFile': 'env.json',
 			'order': [
 				'env'
@@ -124,17 +148,17 @@ describe( 'etc', function tests() {
 			config;
 
 		config = etc({
-			'etc': fixtures,
+			'local': fixtures,
 			'env': 'beepboopbebop',
 			'order': [
-				'app'
+				'local'
 			]
 		});
 		expected = {};
 		assert.deepEqual( config.get(), expected );
 
 		config = etc({
-			'etc': fixtures,
+			'local': fixtures,
 			'order': [
 				'unknown_unsupported_source'
 			]
@@ -143,7 +167,7 @@ describe( 'etc', function tests() {
 		assert.deepEqual( config.get(), expected );
 	});
 
-	it( 'should load configuration files according to a default hierarchy: defaults < user < app < env', function test() {
+	it( 'should load configuration files according to a default hierarchy: defaults < app < local < user < env', function test() {
 		var expected,
 			config,
 			env;
@@ -153,7 +177,7 @@ describe( 'etc', function tests() {
 
 		// No environment variable set:
 		config = etc({
-			'etc': fixtures,
+			'local': fixtures,
 			'env': 'local'
 		});
 
@@ -167,7 +191,7 @@ describe( 'etc', function tests() {
 		process.env[ 'BEEP' ] = 'yoyo';
 
 		config = etc({
-			'etc': fixtures,
+			'local': fixtures,
 			'env': 'local'
 		});
 
@@ -196,11 +220,11 @@ describe( 'etc', function tests() {
 
 		// Default:
 		config = etc({
-			'etc': fixtures,
+			'local': fixtures,
 			'env': 'local',
 			'order': [
 				'defaults',
-				'app',
+				'local',
 				'env'
 			]
 		});
@@ -213,12 +237,12 @@ describe( 'etc', function tests() {
 
 		// Specified:
 		config = etc({
-			'etc': fixtures,
+			'local': fixtures,
 			'env': 'local',
 			'order': [
 				'defaults',
 				'env',
-				'app'
+				'local'
 			]
 		});
 

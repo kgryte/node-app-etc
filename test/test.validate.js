@@ -43,6 +43,30 @@ describe( 'validate', function tests() {
 		}
 	});
 
+	it( 'should return an error if provided a `local` option which is not a string primitive', function test() {
+		var values,
+			err,
+			i;
+
+		values = [
+			5,
+			NaN,
+			null,
+			undefined,
+			true,
+			[],
+			{},
+			function(){}
+		];
+
+		for ( i = 0; i < values.length; i++ ) {
+			err = validate( {}, {
+				'local': values[ i ]
+			}, values[ i ] );
+			assert.isTrue( err instanceof TypeError );
+		}
+	});
+
 	it( 'should return an error if provided an `etc` option which is not a string primitive', function test() {
 		var values,
 			err,
@@ -86,6 +110,54 @@ describe( 'validate', function tests() {
 		for ( i = 0; i < values.length; i++ ) {
 			err = validate( {}, {
 				'defaultsFile': values[ i ]
+			}, values[ i ] );
+			assert.isTrue( err instanceof TypeError );
+		}
+	});
+
+	it( 'should return an error if provided an `etc` option which is not a string primitive', function test() {
+		var values,
+			err,
+			i;
+
+		values = [
+			5,
+			NaN,
+			null,
+			undefined,
+			true,
+			[],
+			{},
+			function(){}
+		];
+
+		for ( i = 0; i < values.length; i++ ) {
+			err = validate( {}, {
+				'etc': values[ i ]
+			}, values[ i ] );
+			assert.isTrue( err instanceof TypeError );
+		}
+	});
+
+	it( 'should return an error if provided an `etcFile` option which is not a string primitive', function test() {
+		var values,
+			err,
+			i;
+
+		values = [
+			5,
+			NaN,
+			null,
+			undefined,
+			true,
+			[],
+			{},
+			function(){}
+		];
+
+		for ( i = 0; i < values.length; i++ ) {
+			err = validate( {}, {
+				'etcFile': values[ i ]
 			}, values[ i ] );
 			assert.isTrue( err instanceof TypeError );
 		}
@@ -219,8 +291,10 @@ describe( 'validate', function tests() {
 			err;
 
 		opts = {
-			'etc': './config',
+			'local': './config',
 			'defaultsFile': 'configgie.json',
+			'etc': '/etc',
+			'etcFile': 'appie/config.toml',
 			'user': '/Users/bbop/Library/Preferences',
 			'userFile': 'appie.toml',
 			'env': 'local',
