@@ -67,7 +67,7 @@ var config = etc({
 
 ##### Application Configuration
 
-The __etc__ directory option specifies the location of a directory containing application-specific configuration files. The default value is [`/etc`](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard), but this may __not__ apply for all operating systems (e.g., Windows). To specify a different directory, set the `etc` option:
+The __etc__ directory option specifies the location of a directory containing application-specific configuration files. The default value is [`/etc`](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard), but this may __not__ apply for all operating systems (e.g., [Windows](http://stackoverflow.com/questions/2359338/windows-equivalent-of-system-configuration-directory)). To specify a different directory, set the `etc` option:
 
 ``` javascript
 var config = etc({
@@ -195,7 +195,7 @@ Configuration sources are many; e.g., user-specific, application-specific, runti
 *	__user__: user-specific settings
 *	__env__: [environment variable](https://en.wikipedia.org/wiki/Environment_variable) runtime settings
 
-The `order` option exists to impose a configuration hierarchy. By default, the hierarchy is
+The `order` option exists to impose a configuration hierarchy. By default, the hierarchy is biased toward Linux systems:
 
 ``` javascript
 [

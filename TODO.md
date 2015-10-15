@@ -25,7 +25,7 @@ TODO
 9. [rc](https://github.com/dominictarr/rc) has a notion of retaining which config sources were used to derive a config; useful?
 	-	maybe for inspection: repl or debug
 	-	could log to `DEBUG`
-10. add [windows note](http://stackoverflow.com/questions/2359338/windows-equivalent-of-system-configuration-directory) in README to avoid `etc` in order
+10. 
 11. when searching, search for both `dev.toml` and `.dev.toml` variants
 12. 
 
