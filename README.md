@@ -45,7 +45,7 @@ __Note__: if a file extension is omitted when specifying file basenames, this mo
 
 ##### Local Configuration Directory
 
-By default, the local application configuration directory is a directory named [`etc`](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard) located in the application's [root](https://github.com/kgryte/resolve-app-path) directory. This directory may contain default configuration settings, mappings between environment variables and configuration settings, various application-specific configuration files tailored for different runtime environments, and more. To specify a different directory, set the `local` option:
+By default, the __local__ application configuration directory is a directory named [`etc`](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard) located in the application's [root](https://github.com/kgryte/resolve-app-path) directory. This directory may contain default configuration settings, mappings between environment variables and configuration settings, various application-specific configuration files tailored for different runtime environments, and more. To specify a different directory, set the `local` option:
 
 ``` javascript
 var config = etc({
@@ -67,7 +67,7 @@ var config = etc({
 
 ##### Application Configuration
 
-The __etc__ directory option specifies the location of a directory containing application-specific configuration files. The default value is [`/etc`](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard), but this may not apply for all operating systems (e.g., Windows). To specify a different directory, set the `etc` option:
+The __etc__ directory option specifies the location of a directory containing application-specific configuration files. The default value is [`/etc`](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard), but this may __not__ apply for all operating systems (e.g., Windows). To specify a different directory, set the `etc` option:
 
 ``` javascript
 var config = etc({
@@ -187,7 +187,7 @@ __Notes__:
 
 ##### Configuration Hierarchy
 
-Configuration sources are many; e.g., user-specific, application-specific, [environment variables](https://en.wikipedia.org/wiki/Environment_variable), and more. The following sources are supported:
+Configuration sources are many; e.g., user-specific, application-specific, runtime-specific, [environment variables](https://en.wikipedia.org/wiki/Environment_variable), and more. The following sources are supported:
 
 *	__defaults__: default application settings
 *	__app__ : application-specific settings
