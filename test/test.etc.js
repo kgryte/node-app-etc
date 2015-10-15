@@ -143,6 +143,52 @@ describe( 'etc', function tests() {
 		assert.deepEqual( config.get(), expected );
 	});
 
+	it( 'should search for hidden files as well as non-hidden files (e.g., local)', function test() {
+		var expected,
+			config,
+			env;
+
+		env = process.env[ 'NODE_ENV' ];
+		delete process.env[ 'NODE_ENV' ];
+
+		config = etc({
+			'local': fixtures,
+			'env': 'hidden',
+			'order': [
+				'local'
+			]
+		});
+		expected = {
+			'beep': 'hide!'
+		};
+		assert.deepEqual( config.get(), expected );
+
+		process.env[ 'NODE_ENV' ] = env;
+	});
+
+	it( 'should search for hidden files as well as non-hidden files (e.g., app)', function test() {
+		var expected,
+			config,
+			env;
+
+		env = process.env[ 'NODE_ENV' ];
+		delete process.env[ 'NODE_ENV' ];
+
+		config = etc({
+			'etc': fixtures,
+			'etcFile': '.hiddenapp',
+			'order': [
+				'app'
+			]
+		});
+		expected = {
+			'beep': 'boopbebop'
+		};
+		assert.deepEqual( config.get(), expected );
+
+		process.env[ 'NODE_ENV' ] = env;
+	});
+
 	it( 'should ignore non-existent configuration sources', function test() {
 		var expected,
 			config;

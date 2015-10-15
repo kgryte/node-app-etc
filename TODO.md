@@ -26,8 +26,6 @@ TODO
 	-	maybe for inspection: repl or debug
 	-	could log to `DEBUG`
 10. 
-11. when searching, search for both `dev.toml` and `.dev.toml` variants
-12. 
 
 
 #### Prior Art
