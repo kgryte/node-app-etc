@@ -23,6 +23,7 @@ TODO
 8. consider supporting `argv` mapping
 	-	would require similar approach to environment variables
 9. app-etc-env? env2object? map-env-vars?
+	- 	sep mod
 10. 
 
 
