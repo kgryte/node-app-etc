@@ -3,6 +3,7 @@ TODO
 
 1. bump app-etc-load and app-etc-config deps
 	-	for `config`, see (4) below.
+	-	load, config, etc should specify 1.x.x versions
 2. finish implementation/tests for `user`
 3. 
 4. ability to specify a schema????
@@ -16,10 +17,19 @@ TODO
 		-	would be better if could just validate what changed
 	-	how about just a method which the user can choose to use to validate at any point? e.g., `etc.validate( config )`?
 		-	might be better to hang the method off `config`
-5. load, config, etc should specify 1.x.x versions
+5. what about a `configFile` option for an arbitrary configuration file?
+	-	[rc](https://github.com/dominictarr/rc) supports a `--config` option
+	-	in terms of `order`, this would be last
+	-	but then again, what is returned is a `Config` instance which can load and parse files
+		-	leaning toward not supporting
+		-	this should be punted to userland and just be an application specific `argv`
 6. 
 7. how to handle `.<appname>` config files where extension is unknown?
 	-	cannot reliably sniff the type either
+	-	could just assume the file is `ini`
+		-	in `./lib/load`, could check for a `.<basename>` and `.<basename>rc` file when a basename does not have an extension
+		-	this could be a step before entering the `for` loop
+		- 	if found, parse as `ini`
 8. consider supporting `argv` mapping
 	-	would require similar approach to environment variables
 9. app-etc-env? env2object? map-env-vars?
