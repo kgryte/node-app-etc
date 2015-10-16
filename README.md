@@ -42,7 +42,7 @@ The `function` accepts the following `options`:
 __Notes__:
 
 *	If a file extension is omitted when specifying file basenames, this module will search for the first file having the basename and a supported extension. For supported extensions, see [app-etc-load](https://github.com/kgryte/node-app-etc-load).
-*	If a file basename does __not__ begin with a `.`, this module will search for both hidden and non-hidden files. The converse is __not__ true. This also applies for inferred basenames; e.g., __env__. If `env` is `dev`, this module will search for and load either an `.dev.<ext>` or a `dev.<ext>` file. 
+*	If a file basename does __not__ begin with a `.`, this module will search for both hidden and non-hidden files. This also applies for inferred basenames; e.g., __env__. If `env` is `dev`, this module will search for and load either an `.dev.<ext>` or a `dev.<ext>` file. 
 
 
 
