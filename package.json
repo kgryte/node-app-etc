@@ -47,6 +47,7 @@
   "dependencies": {
     "app-etc-config": "0.0.0",
     "app-etc-load": "0.0.0",
+    "debug": "^2.2.0",
     "resolve-app-path": "^1.0.2",
     "resolve-app-pkginfo": "^1.0.0",
     "utils-configdir": "^1.0.0",

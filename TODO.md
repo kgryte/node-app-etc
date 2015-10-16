@@ -22,9 +22,7 @@ TODO
 	-	cannot reliably sniff the type either
 8. consider supporting `argv` mapping
 	-	would require similar approach to environment variables
-9. [rc](https://github.com/dominictarr/rc) has a notion of retaining which config sources were used to derive a config; useful?
-	-	maybe for inspection: repl or debug
-	-	could log to `DEBUG`
+9. app-etc-env? env2object? map-env-vars?
 10. 
 
 
