@@ -4,7 +4,7 @@ TODO
 1. bump app-etc-load and app-etc-config deps
 	-	for `config`, see (4) below.
 	-	load, config, etc should specify 1.x.x versions
-2. finish implementation/tests for `user`
+2. 
 3. 
 4. ability to specify a schema????
 	-	would allow validation; when merging, etc., could capture a "snapshot" and rollback if invalid
@@ -26,7 +26,7 @@ TODO
 6. 
 7. how to handle `.<appname>` config files where extension is unknown?
 	-	cannot reliably sniff the type either
-	-	could just assume the file is `ini`
+	-	could just assume the file is `ini` ("everything is ini")
 		-	in `./lib/load`, could check for a `.<basename>` and `.<basename>rc` file when a basename does not have an extension
 		-	this could be a step before entering the `for` loop
 		- 	if found, parse as `ini`

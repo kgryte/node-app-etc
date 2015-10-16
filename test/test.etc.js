@@ -119,8 +119,28 @@ describe( 'etc', function tests() {
 		process.env[ 'NODE_ENV' ] = env;
 	});
 
-	// TODO:
-	it( 'should load a user-specific configuration file' );
+	it( 'should load a user-specific configuration file', function test() {
+		var expected,
+			config,
+			env;
+
+		env = process.env[ 'NODE_ENV' ];
+		delete process.env[ 'NODE_ENV' ];
+
+		config = etc({
+			'user': fixtures,
+			'userFile': 'user.toml',
+			'order': [
+				'user'
+			]
+		});
+		expected = {
+			'beep': 'bleep'
+		};
+		assert.deepEqual( config.get(), expected );
+
+		process.env[ 'NODE_ENV' ] = env;
+	});
 
 	it( 'should load environment variables', function test() {
 		var expected,
