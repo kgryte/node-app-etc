@@ -34,10 +34,12 @@ TODO
 	-	would require similar approach to environment variables
 	-	what about when an `argv` refers to a file? e.g., `--config` ?
 	-	this feels like it should be a userland type thing
+		-	maybe not; as an `argv` mapping can selectively choose which args to map. If a `--config` option, this *can* still be handled in userland
+		-	sep mod similar to env vars
+			-	app-etc-argv? argv2obj? map-argv?
+			-	no for `app-` prefix
 	-	`argv` would also be last in the order, after env vars
-9. app-etc-env? env2object? map-env-vars?
-	- 	sep mod
-10. 
+9. 
 
 
 #### Prior Art
