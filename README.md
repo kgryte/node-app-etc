@@ -174,17 +174,7 @@ keypath = "server.cert"
 type = "string"
 ```
 
-__Notes__:
-
-*	A configuration setting is specified by a `keypath`.
-* 	Nested configuration setting `keypaths` __must__ be `.` separated.
-*	A configuration setting type may be specified by providing a `type`. Possible `types `include:
-	-	`string` (default)
-	-	`number`
-	-	`boolean`
-	-	`object`
-*	If an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) cannot be cast as a specified type, the module __will__ throw an `error`.
-*	If an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) does __not__ exist, the module __skips__ that variable.
+See [env-to-object](https://github.com/kgryte/node-env-to-object) for more information. Note that, if an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) cannot be cast as a specified type, the module __will__ throw an `error`.
 
 
 
