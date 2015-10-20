@@ -5,6 +5,7 @@
 	"etcFile": "",
 	"env": "dev",
 	"envFile": "env",
+	"argvFile": "argv",
 	"user": "",
 	"userFile": "",
 	"order": [
@@ -12,6 +13,7 @@
 		"app",
 		"local",
 		"user",
-		"env"
+		"env",
+		"argv"
 	]
 }

@@ -1,72 +1,73 @@
 {
-	"name": "app-etc",
-	"version": "0.0.0",
-	"description": "Application configuration.",
-	"author": {
-		"name": "Athan Reines",
-		"email": "kgryte@gmail.com"
-	},
-	"contributors": [
-		{
-			"name": "Athan Reines",
-			"email": "kgryte@gmail.com"
-		}
-	],
-	"scripts": {
-		"test": "mocha",
-		"test-cov": "istanbul cover ./node_modules/.bin/_mocha --dir ./reports/coverage -- -R spec",
-		"codecov": "istanbul cover ./node_modules/.bin/_mocha --dir ./reports/codecov/coverage --report lcovonly -- -R spec && cat ./reports/codecov/coverage/lcov.info | codecov && rm -rf ./reports/codecov"
-	},
-	"main": "./lib",
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/kgryte/node-app-etc.git"
-	},
-	"keywords": [
-		"app",
-		"application",
-		"server",
-		"service",
-		"microservice",
-		"etc",
-		"conf",
-		"config",
-		"configure",
-		"configuration",
-		"settings",
-		"env",
-		"environment",
-		"load",
-		"parse",
-		"utils",
-		"utility"
-	],
-	"bugs": {
-		"url": "https://github.com/kgryte/node-app-etc/issues"
-	},
-	"dependencies": {
-		"app-etc-config": "0.0.0",
-		"app-etc-load": "0.0.2",
-		"debug": "^2.2.0",
-		"env-to-object": "1.x.x",
-		"resolve-app-path": "^1.0.2",
-		"resolve-app-pkginfo": "^1.0.0",
-		"utils-configdir": "^1.0.0",
-		"utils-extname": "^1.0.0",
-		"utils-fs-exists": "^1.0.1",
-		"utils-merge2": "^1.0.0",
-		"validate.io-object": "^1.0.4",
-		"validate.io-string-array": "^1.0.0",
-		"validate.io-string-primitive": "^1.0.0"
-	},
-	"devDependencies": {
-		"@kgryte/noop": "^1.0.0",
-		"chai": "3.x.x",
-		"codecov.io": "^0.1.5",
-		"istanbul": "^0.3.0",
-		"jshint": "2.x.x",
-		"jshint-stylish": "2.x.x",
-		"mocha": "2.x.x"
-	},
-	"license": "MIT"
+  "name": "app-etc",
+  "version": "0.0.0",
+  "description": "Application configuration.",
+  "author": {
+    "name": "Athan Reines",
+    "email": "kgryte@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Athan Reines",
+      "email": "kgryte@gmail.com"
+    }
+  ],
+  "scripts": {
+    "test": "mocha",
+    "test-cov": "istanbul cover ./node_modules/.bin/_mocha --dir ./reports/coverage -- -R spec",
+    "codecov": "istanbul cover ./node_modules/.bin/_mocha --dir ./reports/codecov/coverage --report lcovonly -- -R spec && cat ./reports/codecov/coverage/lcov.info | codecov && rm -rf ./reports/codecov"
+  },
+  "main": "./lib",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kgryte/node-app-etc.git"
+  },
+  "keywords": [
+    "app",
+    "application",
+    "server",
+    "service",
+    "microservice",
+    "etc",
+    "conf",
+    "config",
+    "configure",
+    "configuration",
+    "settings",
+    "env",
+    "environment",
+    "load",
+    "parse",
+    "utils",
+    "utility"
+  ],
+  "bugs": {
+    "url": "https://github.com/kgryte/node-app-etc/issues"
+  },
+  "dependencies": {
+    "app-etc-config": "0.0.0",
+    "app-etc-load": "0.0.2",
+    "argv-to-object": "1.x.x",
+    "debug": "^2.2.0",
+    "env-to-object": "1.x.x",
+    "resolve-app-path": "^1.0.2",
+    "resolve-app-pkginfo": "^1.0.0",
+    "utils-configdir": "^1.0.0",
+    "utils-extname": "^1.0.0",
+    "utils-fs-exists": "^1.0.1",
+    "utils-merge2": "^1.0.0",
+    "validate.io-object": "^1.0.4",
+    "validate.io-string-array": "^1.0.0",
+    "validate.io-string-primitive": "^1.0.0"
+  },
+  "devDependencies": {
+    "@kgryte/noop": "^1.0.0",
+    "chai": "3.x.x",
+    "codecov.io": "^0.1.5",
+    "istanbul": "^0.3.0",
+    "jshint": "2.x.x",
+    "jshint-stylish": "2.x.x",
+    "mocha": "2.x.x"
+  },
+  "license": "MIT"
 }

@@ -259,6 +259,30 @@ describe( 'validate', function tests() {
 		}
 	});
 
+	it( 'should return an error if provided an `argvFile` option which is not a string primitive', function test() {
+		var values,
+			err,
+			i;
+
+		values = [
+			5,
+			NaN,
+			null,
+			undefined,
+			true,
+			[],
+			{},
+			function(){}
+		];
+
+		for ( i = 0; i < values.length; i++ ) {
+			err = validate( {}, {
+				'argvFile': values[ i ]
+			}, values[ i ] );
+			assert.isTrue( err instanceof TypeError );
+		}
+	});
+
 	it( 'should return an error if provided an `order` option which is not a string array', function test() {
 		var values,
 			err,
@@ -299,6 +323,7 @@ describe( 'validate', function tests() {
 			'userFile': 'appie.toml',
 			'env': 'local',
 			'envFile': 'env_mapping.json',
+			'argvFile': 'argv_mapping.toml',
 			'order': [
 				'app',
 				'env'

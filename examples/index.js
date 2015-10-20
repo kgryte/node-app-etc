@@ -12,7 +12,7 @@ console.dir( config.get() );
 		'server': {
 			'port': 8080,
 			'address': '127.0.0.1',
-			'ssl': false,
+			'ssl': true,
 			'key': '',
 			'cert': ''
 		},

@@ -35,8 +35,9 @@ The `function` accepts the following `options`:
 *	__user__: user configuration directory. The [default value](https://github.com/kgryte/utils-configdir) is determined according to the host OS.
 *	__userFile__: basename of a file within the user configuration directory which contains *user* application settings. The default value is the application [name](https://github.com/kgryte/resolve-app-pkginfo).
 *	__env__: application runtime environment. Default: `dev`.
-*	__envFile__: basename of a file within the *local* application configuration directory which maps environment variables to application settings. Default: `env`.
-*	__order__: defines the configuration hierarchy. Default: `['defaults','app','local','user','env']`.
+*	__envFile__: basename of a file within the *local* application configuration directory which [maps](https://github.com/kgryte/node-env-to-object) environment variables to application settings. Default: `env`.
+*	__argvFile__: basename of a file within the *local* application configuration directory which [maps](https://github.com/kgryte/node-argv-to-object) command-line arguments to application settings. Default: `argv`.
+*	__order__: defines the configuration hierarchy. Default: `['defaults','app','local','user','env','argv']`.
 
 
 __Notes__:
@@ -176,17 +177,60 @@ type = "string"
 
 See [env-to-object](https://github.com/kgryte/node-env-to-object) for more information. Note that, if an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) cannot be cast as a specified type, the module __will__ throw an `error`.
 
+When scripting or running an application from the command-line, command-line arguments are commonly used to configure an application. To [map](https://github.com/kgryte/node-argv-to-object) command-line arguments to configuration settings, this module searches the __local__ application configuration directory for a file which maps each command-line argument to a particular setting. By default, this module looks for a file having the basename `argv`. To specify a different basename, set the `argFile` option:
+
+``` javascript
+var config = etc({
+	'argvFile': 'argv_mapping'
+});
+```
+
+The file contents should include each relevant command-line argument and a corresponding setting. For example, a JSON mapping file:
+
+``` javascript
+{
+	"api-key": {
+		"keypath": "gKey"
+	},
+	"loglevel": {
+		"keypath": "logger.level",
+		"default": "info"
+	},
+	"port": {
+		"keypath": "server.port",
+		"type": "integer",
+		"alias": [
+			"p"
+		]
+	},
+	"ssl": {
+		"keypath": "server.ssl",
+		"type": "boolean"
+	},
+	"key": {
+		"keypath": "server.key",
+		"type": "string"
+	},
+	"cert": {
+		"keypath": "server.cert",
+		"type": "string"
+}
+```
+
+See [argv-to-object](https://github.com/kgryte/node-argv-to-object) for more information. Note that, if a command-line argument cannot be cast as a specified type, the module __will__ throw an `error`.
+
 
 
 ##### Configuration Hierarchy
 
-Configuration sources are many; e.g., user-specific, application-specific, runtime-specific, [environment variables](https://en.wikipedia.org/wiki/Environment_variable), and more. The following sources are supported:
+Configuration sources are many; e.g., user-specific, application-specific, runtime-specific, [environment variables](https://en.wikipedia.org/wiki/Environment_variable), command-line arguments, and more. The following sources are supported:
 
 *	__defaults__: default application settings
 *	__app__ : application-specific settings
 *	__local__: local application-specific settings
 *	__user__: user-specific settings
 *	__env__: [environment variable](https://en.wikipedia.org/wiki/Environment_variable) runtime settings
+*	__argv__: command-line arguments
 
 The `order` option exists to impose a configuration hierarchy. By default, the hierarchy is biased toward Linux systems:
 
@@ -196,7 +240,8 @@ The `order` option exists to impose a configuration hierarchy. By default, the h
 	'app',
 	'local',
 	'user',
-	'env'       // read last
+	'env',
+	'argv'      // read last
 ]
 ```
 
@@ -261,7 +306,7 @@ console.dir( config.get() );
 		'server': {
 			'port': 8080,
 			'address': '127.0.0.1',
-			'ssl': false,
+			'ssl': true,
 			'key': '',
 			'cert': ''
 		},
@@ -276,7 +321,7 @@ console.dir( config.get() );
 To run the example code from the top-level application directory,
 
 ``` bash
-$ DEBUG=* NODE_ENV=dev PORT=8080 node ./examples/index.js
+$ DEBUG=* NODE_ENV=dev PORT=8080 node ./examples/index.js --ssl
 ```
 
 

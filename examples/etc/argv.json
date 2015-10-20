@@ -1,0 +1,25 @@
+{
+	"loglevel": {
+		"keypath": "logger.level",
+		"type": "string"
+	},
+	"port": {
+		"keypath": "server.port",
+		"type": "integer",
+		"alias": [
+			"p"
+		]
+	},
+	"ssl": {
+		"keypath": "server.ssl",
+		"type": "boolean"
+	},
+	"key": {
+		"keypath": "server.key",
+		"type": "string"
+	},
+	"cert": {
+		"keypath": "server.cert",
+		"type": "string"
+	}
+}

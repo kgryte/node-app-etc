@@ -146,7 +146,7 @@ describe( 'etc', function tests() {
 		var expected,
 			config;
 
-		process.env[ 'BEEP' ] = 'yoyo';
+		process.env[ 'BEEP'] = 'yoyo';
 
 		config = etc({
 			'local': fixtures,
@@ -161,6 +161,35 @@ describe( 'etc', function tests() {
 		};
 
 		assert.deepEqual( config.get(), expected );
+	});
+
+	it( 'should load command-line arguments', function test() {
+		var expected,
+			config,
+			argv;
+
+		argv = process.argv;
+		process.argv = [
+			null,
+			null,
+			'--beep=yoyo'
+		];
+
+		config = etc({
+			'local': fixtures,
+			'argvFile': 'argv.json',
+			'order': [
+				'argv'
+			]
+		});
+
+		expected = {
+			'beep': 'yoyo'
+		};
+
+		assert.deepEqual( config.get(), expected );
+
+		process.argv = argv;
 	});
 
 	it( 'should search for hidden files as well as non-hidden files (e.g., local)', function test() {
@@ -233,13 +262,17 @@ describe( 'etc', function tests() {
 		assert.deepEqual( config.get(), expected );
 	});
 
-	it( 'should load configuration files according to a default hierarchy: defaults < app < local < user < env', function test() {
+	it( 'should load configuration files according to a default hierarchy: defaults < app < local < user < env < argv', function test() {
 		var expected,
 			config,
+			argv,
 			env;
 
 		env = process.env[ 'NODE_ENV' ];
 		delete process.env[ 'NODE_ENV' ];
+
+		argv = process.argv;
+		process.argv = [ null, null ];
 
 		// No environment variable set:
 		config = etc({
@@ -267,11 +300,27 @@ describe( 'etc', function tests() {
 
 		assert.deepEqual( config.get(), expected );
 
-		delete process.env[ 'BEEP' ];
+		// Set a command-line argument:
+		process.argv = [
+			null,
+			null,
+			'--beep=oyoy'
+		];
+
+		config = etc({
+			'local': fixtures,
+			'env': 'local'
+		});
+
+		expected = {
+			'beep': 'oyoy'
+		};
+
+		assert.deepEqual( config.get(), expected );
 
 		// Clean-up:
 		process.env[ 'NODE_ENV' ] = env;
-
+		process.argv = argv;
 	});
 
 	it( 'should load configuration files according to a specified hierarchy', function test() {
@@ -321,7 +370,6 @@ describe( 'etc', function tests() {
 		// Clean-up:
 		delete process.env[ 'BEEP' ];
 		process.env[ 'NODE_ENV' ] = env;
-
 	});
 
 	it( 'should return an empty config if unable to locate configuration files', function test() {

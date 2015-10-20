@@ -1,0 +1,33 @@
+{
+	"api-key": {
+		"keypath": "akey",
+		"type": "string"
+	},
+	"loglevel": {
+		"keypath": "logger.level",
+		"type": "string"
+	},
+	"port": {
+		"keypath": "server.port",
+		"type": "integer",
+		"alias": [
+			"p"
+		]
+	},
+	"beep": {
+		"keypath": "beep",
+		"type": "string"
+	},
+	"bool": {
+		"keypath": "bool",
+		"type": "boolean"
+	},
+	"obj": {
+		"keypath": "obj",
+		"type": "object"
+	},
+	"arr": {
+		"keypath": "arr",
+		"type": "object"
+	}
+}
