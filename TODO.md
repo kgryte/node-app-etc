@@ -4,6 +4,7 @@ TODO
 1. bump app-etc-load and app-etc-config deps
 	-	for `config`, see (4) below.
 	-	load, config, etc should specify 1.x.x versions
+	-	env-to-object should specify 1.x.x
 2. 
 3. 
 4. ability to specify a schema????
