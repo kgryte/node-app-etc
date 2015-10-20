@@ -125,7 +125,7 @@ var config = etc({
 });
 ```
 
-The file contents should include each relevant [environment variable](https://en.wikipedia.org/wiki/Environment_variable) and a corresponding setting. For example, a JSON mapping file:
+The file contents should include each relevant [environment variable](https://en.wikipedia.org/wiki/Environment_variable) and a corresponding setting. For example, a JSON [mapping](https://github.com/kgryte/node-env-to-object) file:
 
 ``` javascript
 {
@@ -149,7 +149,7 @@ The file contents should include each relevant [environment variable](https://en
 }
 ```
 
-A TOML mapping file:
+A TOML [mapping](https://github.com/kgryte/node-env-to-object) file:
 
 ``` toml
 # A TOML file which maps environment variables to configuration settings...
@@ -177,7 +177,7 @@ type = "string"
 
 See [env-to-object](https://github.com/kgryte/node-env-to-object) for more information. Note that, if an [environment variable](https://en.wikipedia.org/wiki/Environment_variable) cannot be cast as a specified type, the module __will__ throw an `error`.
 
-When scripting or running an application from the command-line, command-line arguments are commonly used to configure an application. To [map](https://github.com/kgryte/node-argv-to-object) command-line arguments to configuration settings, this module searches the __local__ application configuration directory for a file which maps each command-line argument to a particular setting. By default, this module looks for a file having the basename `argv`. To specify a different basename, set the `argFile` option:
+When scripting or running an application from the command-line, command-line arguments are commonly used to configure an application. To [map](https://github.com/kgryte/node-argv-to-object) command-line arguments to configuration settings, this module searches the __local__ application configuration directory for a file which [maps](https://github.com/kgryte/node-argv-to-object) each command-line argument to a particular setting. By default, this module looks for a file having the basename `argv`. To specify a different basename, set the `argvFile` option:
 
 ``` javascript
 var config = etc({
@@ -185,7 +185,7 @@ var config = etc({
 });
 ```
 
-The file contents should include each relevant command-line argument and a corresponding setting. For example, a JSON mapping file:
+The file contents should include each relevant command-line argument and a corresponding setting. For example, a JSON [mapping](https://github.com/kgryte/node-argv-to-object) file:
 
 ``` javascript
 {
