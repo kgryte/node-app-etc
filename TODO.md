@@ -27,7 +27,7 @@ TODO
 		```
 
 5. 
-6. in `etc.js`, handle case in `user` where `udir===null`
+6. 
 7. how to handle `.<appname>` config files where extension is unknown?
 	-	cannot reliably sniff the type either
 	-	could just assume the file is `ini` ("everything is ini")

@@ -379,4 +379,24 @@ describe( 'etc', function tests() {
 		assert.deepEqual( config.get(), {} );
 	});
 
+	it( 'should handle being unable to resolve a user configuration directory', function test() {
+		var expected,
+			config,
+			env;
+
+		env = process.env;
+		process.env = {};
+
+		config = etc({
+			'userFile': 'user.toml',
+			'order': [
+				'user'
+			]
+		});
+		expected = {};
+		assert.deepEqual( config.get(), expected );
+
+		process.env = env;
+	});
+
 });
