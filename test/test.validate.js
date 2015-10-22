@@ -21,7 +21,7 @@ describe( 'validate', function tests() {
 		expect( validate ).to.be.a( 'function' );
 	});
 
-	it( 'should return an error if provided an options argument which is not a function', function test() {
+	it( 'should return an error if provided an options argument which is not an object', function test() {
 		var values,
 			err,
 			i;
@@ -38,7 +38,7 @@ describe( 'validate', function tests() {
 		];
 
 		for ( i = 0; i < values.length; i++ ) {
-			err = validate( {}, values[ i ], values[ i ] );
+			err = validate( {}, values[ i ] );
 			assert.isTrue( err instanceof TypeError );
 		}
 	});
@@ -62,7 +62,7 @@ describe( 'validate', function tests() {
 		for ( i = 0; i < values.length; i++ ) {
 			err = validate( {}, {
 				'local': values[ i ]
-			}, values[ i ] );
+			});
 			assert.isTrue( err instanceof TypeError );
 		}
 	});
@@ -86,7 +86,7 @@ describe( 'validate', function tests() {
 		for ( i = 0; i < values.length; i++ ) {
 			err = validate( {}, {
 				'etc': values[ i ]
-			}, values[ i ] );
+			});
 			assert.isTrue( err instanceof TypeError );
 		}
 	});
@@ -110,7 +110,7 @@ describe( 'validate', function tests() {
 		for ( i = 0; i < values.length; i++ ) {
 			err = validate( {}, {
 				'defaultsFile': values[ i ]
-			}, values[ i ] );
+			});
 			assert.isTrue( err instanceof TypeError );
 		}
 	});
@@ -134,7 +134,7 @@ describe( 'validate', function tests() {
 		for ( i = 0; i < values.length; i++ ) {
 			err = validate( {}, {
 				'etc': values[ i ]
-			}, values[ i ] );
+			});
 			assert.isTrue( err instanceof TypeError );
 		}
 	});
@@ -158,7 +158,7 @@ describe( 'validate', function tests() {
 		for ( i = 0; i < values.length; i++ ) {
 			err = validate( {}, {
 				'etcFile': values[ i ]
-			}, values[ i ] );
+			});
 			assert.isTrue( err instanceof TypeError );
 		}
 	});
@@ -182,7 +182,7 @@ describe( 'validate', function tests() {
 		for ( i = 0; i < values.length; i++ ) {
 			err = validate( {}, {
 				'user': values[ i ]
-			}, values[ i ] );
+			});
 			assert.isTrue( err instanceof TypeError );
 		}
 	});
@@ -206,7 +206,7 @@ describe( 'validate', function tests() {
 		for ( i = 0; i < values.length; i++ ) {
 			err = validate( {}, {
 				'userFile': values[ i ]
-			}, values[ i ] );
+			});
 			assert.isTrue( err instanceof TypeError );
 		}
 	});
@@ -230,7 +230,7 @@ describe( 'validate', function tests() {
 		for ( i = 0; i < values.length; i++ ) {
 			err = validate( {}, {
 				'env': values[ i ]
-			}, values[ i ] );
+			});
 			assert.isTrue( err instanceof TypeError );
 		}
 	});
@@ -254,7 +254,7 @@ describe( 'validate', function tests() {
 		for ( i = 0; i < values.length; i++ ) {
 			err = validate( {}, {
 				'envFile': values[ i ]
-			}, values[ i ] );
+			});
 			assert.isTrue( err instanceof TypeError );
 		}
 	});
@@ -278,7 +278,7 @@ describe( 'validate', function tests() {
 		for ( i = 0; i < values.length; i++ ) {
 			err = validate( {}, {
 				'argvFile': values[ i ]
-			}, values[ i ] );
+			});
 			assert.isTrue( err instanceof TypeError );
 		}
 	});
@@ -305,7 +305,7 @@ describe( 'validate', function tests() {
 		for ( i = 0; i < values.length; i++ ) {
 			err = validate( {}, {
 				'order': values[ i ]
-			}, values[ i ] );
+			});
 			assert.isTrue( err instanceof TypeError );
 		}
 	});

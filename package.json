@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "app-etc-config": "0.0.0",
-    "app-etc-load": "0.0.2",
+    "app-etc-load": "1.x.x",
     "argv-to-object": "1.x.x",
     "debug": "^2.2.0",
     "env-to-object": "1.x.x",
