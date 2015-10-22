@@ -45,7 +45,7 @@
     "url": "https://github.com/kgryte/node-app-etc/issues"
   },
   "dependencies": {
-    "app-etc-config": "0.0.0",
+    "app-etc-config": "0.0.3",
     "app-etc-load": "1.x.x",
     "argv-to-object": "1.x.x",
     "debug": "^2.2.0",
