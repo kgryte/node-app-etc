@@ -258,7 +258,7 @@ var config = etc({
 ```
 
 
-
+===
 #### etc.parser( extname[, parser] )
 
 Returns a parser for the specified extension.
@@ -291,6 +291,7 @@ For more details, see [app-etc-load](https://github.com/kgryte/node-app-etc-load
 
 
 
+---
 ## Examples
 
 ``` javascript
@@ -325,6 +326,7 @@ $ DEBUG=* NODE_ENV=dev PORT=8080 node ./examples/index.js --ssl
 ```
 
 
+---
 ## Tests
 
 ### Unit
