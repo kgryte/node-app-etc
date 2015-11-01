@@ -39,7 +39,10 @@
     "load",
     "parse",
     "utils",
-    "utility"
+    "utility",
+    "validate",
+    "validation",
+    "schema"
   ],
   "bugs": {
     "url": "https://github.com/kgryte/node-app-etc/issues"
