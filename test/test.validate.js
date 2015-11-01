@@ -211,6 +211,30 @@ describe( 'validate', function tests() {
 		}
 	});
 
+	it( 'should return an error if provided a `userFormat` option which is not a string primitive', function test() {
+		var values,
+			err,
+			i;
+
+		values = [
+			5,
+			NaN,
+			null,
+			undefined,
+			true,
+			[],
+			{},
+			function(){}
+		];
+
+		for ( i = 0; i < values.length; i++ ) {
+			err = validate( {}, {
+				'userFormat': values[ i ]
+			});
+			assert.isTrue( err instanceof TypeError );
+		}
+	});
+
 	it( 'should return an error if provided an `env` option which is not a string primitive', function test() {
 		var values,
 			err,
@@ -320,7 +344,8 @@ describe( 'validate', function tests() {
 			'etc': '/etc',
 			'etcFile': 'appie/config.toml',
 			'user': '/Users/bbop/Library/Preferences',
-			'userFile': 'appie.toml',
+			'userFile': 'appie',
+			'userFormat': 'toml',
 			'env': 'local',
 			'envFile': 'env_mapping.json',
 			'argvFile': 'argv_mapping.toml',

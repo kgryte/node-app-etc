@@ -129,7 +129,8 @@ describe( 'etc', function tests() {
 
 		config = etc({
 			'user': fixtures,
-			'userFile': 'user.toml',
+			'userFile': 'user',
+			'userFormat': 'toml',
 			'order': [
 				'user'
 			]

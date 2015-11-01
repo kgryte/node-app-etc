@@ -34,6 +34,7 @@ The `function` accepts the following `options`:
 *	__etcFile__: basename of a file within an application configuration directory which contains application settings. The default value is the application [name](https://github.com/kgryte/resolve-app-pkginfo).
 *	__user__: user configuration directory. The [default value](https://github.com/kgryte/utils-configdir) is determined according to the host OS.
 *	__userFile__: basename of a file within the user configuration directory which contains *user* application settings. The default value is the application [name](https://github.com/kgryte/resolve-app-pkginfo).
+* 	__userFormat__: user configuration file format. The default value is either determined from a basename filename [extension](https://github.com/kgryte/utils-extname) or `ini`.
 *	__env__: application runtime environment. Default: `dev`.
 *	__envFile__: basename of a file within the *local* application configuration directory which [maps](https://github.com/kgryte/node-env-to-object) environment variables to application settings. Default: `env`.
 *	__argvFile__: basename of a file within the *local* application configuration directory which [maps](https://github.com/kgryte/node-argv-to-object) command-line arguments to application settings. Default: `argv`.
@@ -105,6 +106,17 @@ var config = etc({
 	'userFile': '.appname.json' 
 });
 ```
+
+If a basename does __not__ include a filename [extension](https://github.com/kgryte/utils-extname), the module parses a configuration file as [INI](https://github.com/kgryte/utils-ini-parse). To specify a configuration file format, set the `userFormat` option:
+
+``` javascript
+var config = etc({
+	'userFile': '.appname',
+	'userFormat': 'toml'
+});
+```
+
+For details on how user configuration files are resolved, see [find-user-app-config](https://github.com/kgryte/node-find-user-app-config).
 
 
 ##### Runtime Configuration
