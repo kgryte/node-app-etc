@@ -30,6 +30,7 @@ The `function` accepts the following `options`:
 
 *	__local__: local application configuration directory. Default: [`./etc`](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard).
 *	__defaultsFile__: basename of a file within the *local* application configuration directory which contains *default* application settings. Default: `defaults`.
+*	__schemaFile__: basename of a file within the *local* application configuration directory which contains a [configuration schema](https://github.com/kgryte/node-app-etc-config).
 *	__etc__: application configuration directory. Default: [`/etc`](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard).
 *	__etcFile__: basename of a file within an application configuration directory which contains application settings. The default value is the application [name](https://github.com/kgryte/resolve-app-pkginfo).
 *	__user__: user configuration directory. The [default value](https://github.com/kgryte/utils-configdir) is determined according to the host OS.
@@ -270,6 +271,25 @@ var config = etc({
 ```
 
 
+##### Configuration Schema
+
+As more configuration sources are compiled into a single application configuration, the probability of a __misconfiguration__ increases. Misconfiguration can be problematic as downstream application configuration consumers often make assumptions regarding configuration structure, types, and properties. To enforce a configuration schema and ensure that these assumptions are not violated, specify the basename of a [JSON schema](http://json-schema.org/) file located in the __local__ application configuration directory.
+
+``` javascript
+var config = etc({
+	'schemaFile': 'schema.json'
+});
+```
+
+__Notes__:
+
+*	If a `schemaFile` is a valid [JSON schema](http://json-schema.org/), the module validates the application [configuration](https://github.com/kgryte/node-app-etc-config) __after__ loading __all__ configuration sources.
+*	If a configuration is __invalid__, the module will `throw`.
+*	If a configuration is __valid__, the module returns an application [configuration](https://github.com/kgryte/node-app-etc-config) as per normal operation.
+*	If a `schemaFile` does not exist, the module will __not__ perform validation. Depending on your view, you may consider this behavior a __silent__ `error`.
+
+
+
 ===
 #### etc.parser( extname[, parser] )
 
@@ -311,7 +331,8 @@ var path = require( 'path' ),
 	etc = require( 'app-etc' );
 
 var config = etc({
-	'local': path.join( __dirname, 'etc' )
+	'local': path.join( __dirname, 'etc' ),
+	'schemaFile': 'schema.json'
 });
 console.dir( config.get() );
 /*

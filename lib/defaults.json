@@ -1,6 +1,7 @@
 {
 	"local": "./etc",
 	"defaultsFile": "defaults",
+	"schemaFile": "",
 	"etc": "/etc",
 	"etcFile": "",
 	"env": "dev",

@@ -115,6 +115,30 @@ describe( 'validate', function tests() {
 		}
 	});
 
+	it( 'should return an error if provided a `schemaFile` option which is not a string primitive', function test() {
+		var values,
+			err,
+			i;
+
+		values = [
+			5,
+			NaN,
+			null,
+			undefined,
+			true,
+			[],
+			{},
+			function(){}
+		];
+
+		for ( i = 0; i < values.length; i++ ) {
+			err = validate( {}, {
+				'schemaFile': values[ i ]
+			});
+			assert.isTrue( err instanceof TypeError );
+		}
+	});
+
 	it( 'should return an error if provided an `etc` option which is not a string primitive', function test() {
 		var values,
 			err,
@@ -341,6 +365,7 @@ describe( 'validate', function tests() {
 		opts = {
 			'local': './config',
 			'defaultsFile': 'configgie.json',
+			'schemaFile': 'schema.json',
 			'etc': '/etc',
 			'etcFile': 'appie/config.toml',
 			'user': '/Users/bbop/Library/Preferences',

@@ -1,22 +1,7 @@
 TODO
 ====
 
-1. ability to specify a schema????
-	-	could allow a schema to be provided and then do a one-off validation once all configuration sources have loaded
-
-		``` javascript
-		var c = config.get();
-		var v = validator( schema );
-		v( c );
-		if ( v.errors ) {...} 
-		```
-
-	-	look for `schema` file in `local` dir
-		-	add `schema` default file name to `defaults.json`
-	-	add validation example to README
-
-2. 
-
+1.
 
 
 

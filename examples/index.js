@@ -4,7 +4,8 @@ var path = require( 'path' ),
 	etc = require( './../lib' );
 
 var config = etc({
-	'local': path.join( __dirname, 'etc' )
+	'local': path.join( __dirname, 'etc' ),
+	'schemaFile': 'schema.json'
 });
 console.dir( config.get() );
 /*

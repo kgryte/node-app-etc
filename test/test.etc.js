@@ -400,4 +400,39 @@ describe( 'etc', function tests() {
 		process.env = env;
 	});
 
+	it( 'should validate a configuration if provided a configuration schema', function test() {
+		expect( create( 'invalid.toml' ) ).to.throw( Error );
+		expect( create( 'valid.toml' ) ).to.not.throw ( Error );
+
+		function create( file ) {
+			return function create() {
+				var config = etc({
+					'local': fixtures,
+					'user': fixtures,
+					'schemaFile': 'schema.json',
+					'userFile': file,
+					'order': [
+						'user'
+					]
+				});
+			};
+		}
+	});
+
+	it( 'should neither throw or invalidate if unable to resolve a configuration schema', function test() {
+		expect( create ).to.not.throw ( Error );
+
+		function create() {
+			var config = etc({
+				'local': fixtures,
+				'user': fixtures,
+				'schemaFile': 'unknown_schema.json',
+				'userFile': 'invalid.toml',
+				'order': [
+					'user'
+				]
+			});
+		}
+	});
+
 });
