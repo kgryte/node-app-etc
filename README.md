@@ -287,6 +287,7 @@ __Notes__:
 *	If a configuration is __invalid__, the module will `throw`.
 *	If a configuration is __valid__, the module returns an application [configuration](https://github.com/kgryte/node-app-etc-config) as per normal operation.
 *	If a `schemaFile` does not exist, the module will __not__ perform validation. Depending on your view, you may consider this behavior a __silent__ `error`.
+*	See the [examples](https://github.com/kgryte/node-app-etc/blob/master/examples/etc/schema.json) for a sample [JSON schema](http://json-schema.org/).
 
 
 
