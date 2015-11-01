@@ -45,12 +45,12 @@
     "url": "https://github.com/kgryte/node-app-etc/issues"
   },
   "dependencies": {
-    "app-etc-config": "0.0.3",
+    "app-etc-config": "1.x.x",
     "app-etc-load": "1.x.x",
     "argv-to-object": "1.x.x",
     "debug": "^2.2.0",
     "env-to-object": "1.x.x",
-    "find-user-app-config": "^1.0.0",
+    "find-user-app-config": "1.x.x",
     "resolve-app-path": "^1.0.2",
     "resolve-app-pkginfo": "^1.0.0",
     "utils-extname": "^1.0.0",

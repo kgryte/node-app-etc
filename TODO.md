@@ -1,8 +1,7 @@
 TODO
 ====
 
-1. bump app-etc-config dep (1.x.x)
-2. ability to specify a schema????
+1. ability to specify a schema????
 	-	could allow a schema to be provided and then do a one-off validation once all configuration sources have loaded
 
 		``` javascript
@@ -12,9 +11,11 @@ TODO
 		if ( v.errors ) {...} 
 		```
 
-	-	waiting on fix in `is-my-json-valid`
+	-	look for `schema` file in `local` dir
+		-	add `schema` default file name to `defaults.json`
+	-	add validation example to README
 
-3. 
+2. 
 
 
 
